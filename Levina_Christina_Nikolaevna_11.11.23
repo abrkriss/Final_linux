@@ -1,0 +1,90 @@
+   88  sudo docker ps -a
+   89  sudo docker swarm leave
+   90  sudo docker ps -a
+   91  mkdir fina
+   92  cd fina
+   93  cat > Pets.txt
+   94  cat > Pack animals.txt
+   95  cat > Pack_animals.txt
+   96  ls
+   97  rm Pack
+   98  ls
+   99  cat Pets.txt Pack_animals.txt 
+  100  ls
+  101  cat Pets.txt Pack_animals.txt > Pets.txt
+  102  cat Pets.txt
+  103  ls
+  104  cat Pack_animals.txt
+  105  cat > Pets.txt
+  106  dog
+  107  cat
+  108  hamster 
+  109  cat > Pets.txt
+  110  cat Pets.txt
+  111  cat Pets.txt Pack_animals.txt >> Pets.txt
+  112  cat Pets.txt
+  113  ls
+  114  cat Pets.txt
+  115  cat Pets.txt > Human_Friends.txt
+  116  ls
+  117  cat Pets.txt >> Human_Friends.txt
+  118  ls
+  119  rm Human_Friends.txt
+  120  ls
+  121  cat Pets.txt
+  122  cat > Pets.txt
+  123  cat Pets.txt Pack_animals.txt >> file.txt
+  124  cat file.txt
+  125  mv file.txt Human_Friends.txt
+  126  ls
+  127  cat Human_Friends.txt
+  128  cd ...
+  129  cd...
+  130  cd..
+  131  cs
+  132  cd
+  133  mkdir dir1
+  134  ls
+  135  cd fina
+  136  mv Human_Friends.txt /dir1
+  137  sudo mv Human_Friends.txt /dir1
+  138  ls
+  139  cd
+  140  cd dir1
+  141  ls
+  142  cd
+  143  cd fina
+  144  ls
+  145  cd
+  146  ls
+  147  cd fina
+  148  cat Pets.txt Pack_animals.txt >> file.txt
+  149  mv file.txt Human_Friends.txt
+  150  ls
+  151  mv Human_Friends.txt /home/christina/dir1
+  152  cd
+  153  cd dir1
+  154  ls
+  155  clear
+  156  cd
+  157  sudo apt update
+  158  sudo apt install mysql-server
+  159  sudo mysql_secure_installation
+  160  sudo mysql
+  161  sudo dpkg -i path_to_deb_file
+  162  dpkg -i man-db_2.9.4-2_amd64.deb
+  163  sudo dpkg -i man-db_2.9.4-2_amd64.deb
+  164  cd ~/Загрузки/
+  165  sudo dpkg -i vivaldi-stable_3.8.2259.42-1_amd64.deb
+  166  sudo dpkg -i vivaldi-stable_6.4.3160.42-1_amd64.deb
+  167  dpkg --get-selections
+  168  cat /home/christina/.bash_history
+  169  cd
+  170  history
+  171  history 78
+  172  history 78 >> .bash_history1
+  173  sudo apt remove vivaldi-stable_6.4.3160.42-1_amd64.deb
+  174  cat /home/christina/.bash_history
+  175  dpkg --get-selections
+  176  sudo apt remove vivaldi-stable
+  177  history 90 >> .bash_history1
