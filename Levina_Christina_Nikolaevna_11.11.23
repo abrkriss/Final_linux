@@ -1,6 +1,4 @@
-   88  sudo docker ps -a
-   89  sudo docker swarm leave
-   90  sudo docker ps -a
+
    91  mkdir fina
    92  cd fina
    93  cat > Pets.txt
