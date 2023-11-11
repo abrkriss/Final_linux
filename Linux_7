@@ -1,0 +1,293 @@
+christina: ~
+
+- sudo mysql
+[sudo] пароль для christina: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.35-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+
+mysql> show databases;
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+
+4 rows in set (0,00 sec)
+
+
+mysql> create database Human_Friends;
+Query OK, 1 row affected (0,02 sec)
+
+
+mysql> use Human_Friends;
+Database changed
+
+mysql> create table Pets (id int, name varchar(50), type varchar(50), birthday date, commands varchar(50));
+Query OK, 0 rows affected (0,03 sec)
+
+
+
+mysql> create table Pack_animals (id int, name varchar(50), type varchar(50), birthday date, commands varchar(50));
+Query OK, 0 rows affected (0,03 sec)
+
+
+mysql> show tables;
+
++-------------------------+
+| Tables_in_Human_Friends |
++-------------------------+
+| Pack_animals            |
+| Pets                    |
++-------------------------+
+
+2 rows in set (0,01 sec)
+
+
+mysql> insert into Pets(id, name, type, birthday, commands) values (1, 'dog1', 'dog', '2021-05-01', 'voise'), 
+(2, 'dog2', 'dog', '2022-09-04', 'walk, run, seat'),
+(3, 'cat1', 'cat', '2022-05-08', 'eat'), 
+(4, 'cat2', 'cat', '2020-08-15', 'seat'), 
+(5, 'hamster1', 'hamster', '2023-02-01', 'eat'), 
+(6, 'hamster2', 'hamster', '2021-09-17', 'walk');
+
+Query OK, 6 rows affected (0,02 sec)
+
+Records: 6  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from Pets;
+
++------+----------+---------+------------+-----------------+
+| id   | name     | type    | birthday   | commands        |
++------+----------+---------+------------+-----------------+
+|    1 | dog1     | dog     | 2021-05-01 | voise           |
+|    2 | dog2     | dog     | 2022-09-04 | walk, run, seat |
+|    3 | cat1     | cat     | 2022-05-08 | eat             |
+|    4 | cat2     | cat     | 2020-08-15 | seat            |
+|    5 | hamster1 | hamster | 2023-02-01 | eat             |
+|    6 | hamster2 | hamster | 2021-09-17 | walk            |
++------+----------+---------+------------+-----------------+
+
+6 rows in set (0,00 sec)
+
+
+mysql> insert into Pack_animals(id, name, type, birthday, commands) values (1, 'horse1', 'horse', '2021-05-01', 'voise'), (2, 'horse2', 'horse', '2022-09-04', 'walk, run, seat'), (3, 'camal1', 'camal', '2022-
+Query OK, 6 rows affected (0,00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from Pack_animals;
+
++------+---------+--------+------------+-----------------+
+| id   | name    | type   | birthday   | commands        |
++------+---------+--------+------------+-----------------+
+|    1 | horse1  | horse  | 2021-05-01 | voise           |
+|    2 | horse2  | horse  | 2022-09-04 | walk, run, seat |
+|    3 | camal1  | camal  | 2022-05-08 | eat             |
+|    4 | camal2  | camal  | 2020-08-15 | seat            |
+|    5 | donkey1 | donkey | 2023-02-01 | eat             |
+|    6 | donkey2 | donkey | 2021-09-17 | walk            |
++------+---------+--------+------------+-----------------+
+
+6 rows in set (0,00 sec)
+
+
+mysql> delete from Pack_animals where type='camal';
+Query OK, 2 rows affected (0,01 sec)
+
+mysql> select * from Pack_animals;
+
++------+---------+--------+------------+-----------------+
+| id   | name    | type   | birthday   | commands        |
++------+---------+--------+------------+-----------------+
+|    1 | horse1  | horse  | 2021-05-01 | voise           |
+|    2 | horse2  | horse  | 2022-09-04 | walk, run, seat |
+|    5 | donkey1 | donkey | 2023-02-01 | eat             |
+|    6 | donkey2 | donkey | 2021-09-17 | walk            |
++------+---------+--------+------------+-----------------+
+
+4 rows in set (0,00 sec)
+
+
+mysql> CREATE TABLE young_animals (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL DEFAULT '', age INT NOT  NULL DEFAULT 0, PRIMARY KEY(id));
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> alter table Pets add column age int after birthday;
+Query OK, 0 rows affected (0,02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> UPDATE Pets SET age = (TIMESTAMPDIFF(MONTH, birthday, CURDATE()));
+Query OK, 6 rows affected (0,00 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+
+mysql> select * from Pets;
+
++------+----------+---------+------------+------+-----------------+
+| id   | name     | type    | birthday   | age  | commands        |
++------+----------+---------+------------+------+-----------------+
+|    1 | dog1     | dog     | 2021-05-01 |   30 | voise           |
+|    2 | dog2     | dog     | 2022-09-04 |   14 | walk, run, seat |
+|    3 | cat1     | cat     | 2022-05-08 |   18 | eat             |
+|    4 | cat2     | cat     | 2020-08-15 |   38 | seat            |
+|    5 | hamster1 | hamster | 2023-02-01 |    9 | eat             |
+|    6 | hamster2 | hamster | 2021-09-17 |   25 | walk            |
++------+----------+---------+------------+------+-----------------+
+6 rows in set (0,00 sec)
+
+
+mysql> select name, age from Pets where age >= 12 and age <=36;
+
++----------+------+
+| name     | age  |
++----------+------+
+| dog1     |   30 |
+| dog2     |   14 |
+| cat1     |   18 |
+| hamster2 |   25 |
++----------+------+
+4 rows in set (0,00 sec)
+
+
+mysql> alter table Pack_animals add column age int after birthday;
+Query OK, 0 rows affected (0,02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from Pack_animals;
+
++------+---------+--------+------------+------+-----------------+
+| id   | name    | type   | birthday   | age  | commands        |
++------+---------+--------+------------+------+-----------------+
+|    1 | horse1  | horse  | 2021-05-01 | NULL | voise           |
+|    2 | horse2  | horse  | 2022-09-04 | NULL | walk, run, seat |
+|    5 | donkey1 | donkey | 2023-02-01 | NULL | eat             |
+|    6 | donkey2 | donkey | 2021-09-17 | NULL | walk            |
++------+---------+--------+------------+------+-----------------+
+
+4 rows in set (0,00 sec)
+
+
+mysql> UPDATE Pack_animals SET age = (TIMESTAMPDIFF(MONTH, birthday, CURDATE()));
+Query OK, 4 rows affected (0,01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from Pack_animals;
+
++------+---------+--------+------------+------+-----------------+
+| id   | name    | type   | birthday   | age  | commands        |
++------+---------+--------+------------+------+-----------------+
+|    1 | horse1  | horse  | 2021-05-01 |   30 | voise           |
+|    2 | horse2  | horse  | 2022-09-04 |   14 | walk, run, seat |
+|    5 | donkey1 | donkey | 2023-02-01 |    9 | eat             |
+|    6 | donkey2 | donkey | 2021-09-17 |   25 | walk            |
++------+---------+--------+------------+------+-----------------+
+
+4 rows in set (0,00 sec)
+
+mysql> show tables;
+
++-------------------------+
+| Tables_in_Human_Friends |
++-------------------------+
+| Pack_animals            |
+| Pets                    |
+| young_animals           |
++-------------------------+
+3 rows in set (0,00 sec)
+
+
+mysql> insert into young_animals (name, age) select name, age from Pets where(age>=12 and age<=36);
+Query OK, 4 rows affected (0,02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from young_animals;
+
++----+----------+-----+
+| id | name     | age |
++----+----------+-----+
+|  1 | dog1     |  30 |
+|  2 | dog2     |  14 |
+|  3 | cat1     |  18 |
+|  4 | hamster2 |  25 |
++----+----------+-----+
+4 rows in set (0,00 sec)
+
+
+mysql> insert into young_animals (name, age) select name, age from Pack_animals where(age>=12 and age<=36);
+Query OK, 3 rows affected (0,01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from young_animals;
+
++----+----------+-----+
+| id | name     | age |
++----+----------+-----+
+|  1 | dog1     |  30 |
+|  2 | dog2     |  14 |
+|  3 | cat1     |  18 |
+|  4 | hamster2 |  25 |
+|  8 | horse1   |  30 |
+|  9 | horse2   |  14 |
+| 10 | donkey2  |  25 |
++----+----------+-----+
+7 rows in set (0,00 sec)
+
+mysql> create table animals(id int, name varchar(50), type varchar(50), birthday date, commands varchar(50));
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> insert into animals (id, name, type, birthday, commands) select id, name, type, birthday, commands from Pets;
+Query OK, 6 rows affected (0,01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into animals (id, name, type, birthday, commands) select id, name, type, birthday, commands from Pack_animals;
+Query OK, 4 rows affected (0,01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into animals (id, name) select id, name from young_animals;
+Query OK, 7 rows affected (0,00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from animals;
+
++------+----------+---------+------------+-----------------+
+| id   | name     | type    | birthday   | commands        |
++------+----------+---------+------------+-----------------+
+|    1 | dog1     | dog     | 2021-05-01 | voise           |
+|    2 | dog2     | dog     | 2022-09-04 | walk, run, seat |
+|    3 | cat1     | cat     | 2022-05-08 | eat             |
+|    4 | cat2     | cat     | 2020-08-15 | seat            |
+|    5 | hamster1 | hamster | 2023-02-01 | eat             |
+|    6 | hamster2 | hamster | 2021-09-17 | walk            |
+|    1 | horse1   | horse   | 2021-05-01 | voise           |
+|    2 | horse2   | horse   | 2022-09-04 | walk, run, seat |
+|    5 | donkey1  | donkey  | 2023-02-01 | eat             |
+|    6 | donkey2  | donkey  | 2021-09-17 | walk            |
+|    1 | dog1     | NULL    | NULL       | NULL            |
+|    2 | dog2     | NULL    | NULL       | NULL            |
+|    3 | cat1     | NULL    | NULL       | NULL            |
+|    4 | hamster2 | NULL    | NULL       | NULL            |
+|    8 | horse1   | NULL    | NULL       | NULL            |
+|    9 | horse2   | NULL    | NULL       | NULL            |
+|   10 | donkey2  | NULL    | NULL       | NULL            |
++------+----------+---------+------------+-----------------+
+17 rows in set (0,00 sec)
+
+
